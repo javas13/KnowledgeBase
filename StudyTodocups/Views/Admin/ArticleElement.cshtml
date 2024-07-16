@@ -1,0 +1,27 @@
+﻿@using StudyTodocups.Models;
+@model Article
+@{
+    Layout = "_AdminLayout";
+}
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        advcode_inline: true,
+        images_upload_url: 'Admin/UploadImageTMC',
+        images_upload_base_path: '',
+        relative_urls: false,
+        remove_script_host: false,
+        plugins: [
+            'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export', 'codesample',
+            'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+            'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+
+    });
+</script>
+<h1>@Model.Name</h1>
+@Html.Raw(Model.Text)

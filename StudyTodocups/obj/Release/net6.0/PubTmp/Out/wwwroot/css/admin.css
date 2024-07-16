@@ -1,0 +1,174 @@
+﻿@charset "UTF-8";
+
+@font-face {
+    font-family: ALSHauss;
+    font-display: swap;
+    src: url(../fonts/ALSHauss-Black.woff2) format("woff2");
+    font-weight: 900;
+    font-style: normal
+}
+
+@font-face {
+    font-family: ALSHauss;
+    font-display: swap;
+    src: url(../fonts/ALSHauss-Bold.woff2) format("woff2");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: ALSHauss;
+    font-display: swap;
+    src: url(../fonts/ALSHauss-Book.woff2) format("woff2");
+    font-weight: undefined;
+    font-style: normal
+}
+
+@font-face {
+    font-family: ALSHauss;
+    font-display: swap;
+    src: url(../fonts/ALSHauss-Light.woff2) format("woff2");
+    font-weight: 300;
+    font-style: normal
+}
+
+@font-face {
+    font-family: ALSHauss;
+    font-display: swap;
+    src: url(../fonts/ALSHauss-Medium.woff2) format("woff2");
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: ALSHauss;
+    font-display: swap;
+    src: url(../fonts/ALSHauss-Regular.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Inter;
+    font-display: swap;
+    src: url(../fonts/Inter-Regular.woff2) format("woff2");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Stara;
+    font-display: swap;
+    src: url(../fonts/Stara-Black.woff2) format("woff2");
+    font-weight: 900;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Stara;
+    font-display: swap;
+    src: url(../fonts/Stara-Bold.woff2) format("woff2");
+    font-weight: 700;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Stara;
+    font-display: swap;
+    src: url(../fonts/Stara-ExtraBold.woff2) format("woff2");
+    font-weight: 800;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Stara;
+    font-display: swap;
+    src: url(../fonts/Stara-Medium.woff2) format("woff2");
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Stara;
+    font-display: swap;
+    src: url(../fonts/Stara-SemiBold.woff2) format("woff2");
+    font-weight: 600;
+    font-style: normal
+}
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+}
+
+.admin_cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.admin_main_flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.left_navigation_block {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    min-width: 260px;
+    color: #fff;
+}
+
+.navigation_elem {
+    padding: 20px;
+    font-size: 16px;
+    background-color: #585858;
+    border-bottom: 2px #fff solid;
+    background-color: #ff0000;
+    font-weight: 700;
+}
+
+.right_admin_block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f6f6f6;
+    padding: 50px;
+}
+
+.left_navigation_block a {
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+    .left_navigation_block a:hover {
+        color: aqua;
+    }
+
+.page_root {
+    display: flex;
+    min-height: 100vh;
+}
+.admin_module_item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.admin_crud_btns {
+    cursor: pointer;
+    background-color: red;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 10px;
+    padding: 5px;
+}

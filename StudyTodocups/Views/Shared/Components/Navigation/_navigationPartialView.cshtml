@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Module>
+@{
+    foreach (var p in Model)
+    {
+        if (ViewBag.CurrentModuleId == p.Id)
+        {
+            <a href="/home/module/@p.Id" class="active menu__drop-link">@p.Name</a>
+        }
+        else
+        {
+            <a href="/home/module/@p.Id" class="menu__drop-link">@p.Name</a>
+        }
+    }
+}

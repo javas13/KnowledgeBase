@@ -1,0 +1,9 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+<h1>Добавить модуль</h1>
+<form asp-controller="Admin" asp-action="ModuleSave">
+    <input name="name" placeholder="название"/>
+    <input name="descript" placeholder="описание" />
+    <button>Добавить</button>
+</form>

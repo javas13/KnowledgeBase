@@ -1,0 +1,167 @@
+﻿@using StudyTodocups.ViewComp
+<!doctype html>
+<html lang="ru">
+  <head>
+  <style>.loaded { opacity: 1 }</style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild3562-3733-4637-b937-386665653131/Logo_7_4x_---3-.ico" type="image/x-icon" />
+    <link asp-append-version="true" rel="stylesheet" href="~/css/main.css">
+  <title>@ViewData["Title"]</title>
+    <script src="~/lib/jquery/dist/jquery-3.7.1.min.js"></script>
+</head>
+
+  <body>
+    <header class="header">
+      <div class="header__container">
+     
+        <a href="/" class="header__logo">TODOCUPS</a>
+        <div class="header__avatar">АП</div>
+        <div class="header__burger-menu icon-menu">
+          <span></span>
+        </div>
+      </div>
+      <div class="burgermodal">
+    <div class="burgermodal-container">
+      <div class="burgermodal__header">
+        <a href="/" class="header__logo">TODOCUPS</a>
+      <div class="header__avatar">
+        АП
+      </div>
+        <div class="burgermodal__close">
+          
+        </div>
+      </div>
+      <div class="burgermodal__body">
+        <div class="sidebar">
+  <div class="menu__list">
+    <a style="display: none;" class="menu__link" href="/dashboard.html">Дашборд</a>
+    <a class="menu__link active menu__learn" href="/learn.html">Обучение</a>
+    <div class="menu__drop">
+      @await Component.InvokeAsync("Navigation")
+      @* <div class="menu__drop-link" onclick="window.location.href='/preparing.html';">Подготовка к открытию</div>
+      <div class="menu__drop-link">Выбор локации</div>
+      <div class="menu__drop-link">Обслуживание автоматов</div>
+      <div class="menu__drop-link">Маркетинговые материалы</div>
+      <div class="menu__drop-link">Модуль 5</div>
+      <div class="menu__drop-link">Модуль 6</div>
+      <div class="menu__drop-link">Модуль 7</div>
+      <div class="menu__drop-link">Модуль 8</div>
+      <div class="menu__drop-link">Влияние и коммуникации</div>
+      <div class="menu__drop-link">Модуль 10</div>
+      <div class="menu__drop-link disabled">Повышение рентабельности</div>
+      <div class="menu__drop-link disabled">Расширение охвата</div> *@
+    </div>
+    <a style="display:none;" class="menu__link" href="">Общая информация</a>
+  </div>
+  <div class="manager">
+    <div class="manager__row">
+      <div class="manager__avatar"></div>
+      <div class="manager__info">
+        <p class="mananger__info-name">Мухаметгалева Мирослава</p>
+        <p class="mananger__info-position">Ваш персональный менеджер</p>
+      </div>
+    </div>
+    <ul class="manager__contact">
+      <li>
+        <span></span><a href="https://t.me/telegram_account">@@telegram_account</a>
+      </li>
+      <li><span></span><a href="tel:79998887766">+79998887766</a></li>
+      <li>
+        <span></span><a href="mailto:mail@todocups.com">mail@todocups.com</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+    </div>
+  </div>
+    </div></header>
+    <section class="top__title">
+      <div class="top__title__container">
+        <div class="top__title__left"></div>
+        <div class="top__title__right">
+          <div class="breadcrumbs">
+            <a href="/">Обучение</a>
+                    @{
+                        if (ViewBag.ModuleName != null)
+                        {
+                            List<string> breads = ViewBag.ModuleName;
+                            for (int i = 0; i < breads.Count(); i++)
+                            {                              
+                                    <span>//</span>
+                                    <p>@breads[i]</p>                                                             
+                            }
+                        }
+                        
+                    }
+            
+          </div>
+                <h2 class="top__title__mtitle">@ViewData["NamePage"]</h2>
+        </div>
+      </div>
+    </section>
+    <section class="dashboard">
+      <div class="dashboard__container">
+        <div class="dashboard__row">
+          <div class="dashboard__left">
+            <div class="sidebar">
+  <div class="menu__list">
+    <a style="display: none;" class="menu__link" href="/dashboard.html">Дашборд</a>
+    <a class="menu__link active menu__learn" href="/">Обучение</a>
+    <div class="menu__drop">
+      @* <div class="menu__drop-link" onclick="window.location.href='/preparing.html';">Подготовка к открытию</div>
+      <div class="menu__drop-link">Выбор локации</div>
+      <div class="menu__drop-link">Обслуживание автоматов</div>
+      <div class="menu__drop-link">Маркетинговые материалы</div>
+      <div class="menu__drop-link">Модуль 5</div>
+      <div class="menu__drop-link">Модуль 6</div>
+      <div class="menu__drop-link">Модуль 7</div>
+      <div class="menu__drop-link">Модуль 8</div>
+      <div class="menu__drop-link">Влияние и коммуникации</div>
+      <div class="menu__drop-link">Модуль 10</div>
+      <div class="menu__drop-link disabled">Повышение рентабельности</div>
+      <div class="menu__drop-link disabled">Расширение охвата</div> *@
+      @await Component.InvokeAsync("Navigation")
+    </div>
+                            <a style="display: none;" class="menu__link" href="">Общая информация</a>
+  </div>
+  <div class="manager">
+    <div class="manager__row">
+      <div class="manager__avatar"></div>
+      <div class="manager__info">
+        <p class="mananger__info-name">Мухаметгалева Мирослава</p>
+        <p class="mananger__info-position">Ваш персональный менеджер</p>
+      </div>
+    </div>
+    <ul class="manager__contact">
+      <li>
+        <span></span><a href="https://t.me/telegram_account">@@telegram_account</a>
+      </li>
+      <li><span></span><a href="tel:79998887766">+79998887766</a></li>
+      <li>
+        <span></span><a href="mailto:mail@todocups.com">mail@todocups.com</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+          </div>
+
+          @RenderBody()
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+  <div class="footer__container">
+    <ul class="footer__list">
+      <li><a class="footer__link-phone" href="tel:88007006050">8 800 700 60 50</a></li>
+      <li><a class="footer__link-email" href="mailto:info@todocups.com">info@todocups.com</a></li>
+    </ul>
+  </div>
+    </footer>
+    <script asp-append-version="true" src="~/js/app.min.js"></script>
+  </body>
+</html>

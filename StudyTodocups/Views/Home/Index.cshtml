@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ModuleForList>
+@{
+    ViewData["Title"] = "TODOCUPS - База знаний";
+    ViewData["NamePage"] = "Обучение";
+}
+
+<div class="dashboard__content">
+    <div class="learn__rowBtn">
+        <button class="active learn__btn">Модули</button>
+    </div>
+    <div class="learn__modules">
+        @foreach(var p in Model)
+        {
+            <a class="learn__module" href="home/module/@p.Id">
+                <h4>@p.Name</h4>
+                <div class="learn__module-row">
+                    <span>@p.VideosCount видео</span>
+                    <span>@p.ArticlesCount статей</span>
+                </div>
+                <p>
+                    @p.Description
+                </p>
+            </a>
+        }
+        @* <div class="learn__module">
+            <h4>Подготовка к открытию</h4>
+            <div class="learn__success__module-row">
+                <span>11 видео</span>
+                <span>8 статей</span>
+            </div>
+            <p>
+                Стартовый модуль посвящен подготовительным работам по открытию
+                юридического лица и оформлению необходимых документов
+            </p>
+        </div> *@
+       @*  <div class="learn__module">
+            <h4>Выбор локации</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Обслуживание автоматов</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Маркетинговые материалы</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Модуль 5</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Модуль 6</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Модуль 7</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Модуль 8</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Влияние и коммуникации</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Модуль 10</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Повышение рентабельности</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div>
+        <div class="learn__module">
+            <h4>Расширение охвата</h4>
+            <div class="learn__module-row"></div>
+            <p></p>
+        </div> *@
+    </div>
+</div>

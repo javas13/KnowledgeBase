@@ -1,0 +1,154 @@
+﻿@using StudyTodocups.ViewModels;
+@using StudyTodocups.Models;
+@model TestElemVM;
+
+@* @{
+    ViewData["Title"] = "Тест - " + Model.;
+    ViewData["NamePage"] = "Тест - " + currentTest.Name;
+} *@
+<div class="dashboard__content">
+    <div class="error_mes_log">@ViewBag.TestError</div>
+    @{
+        int numberQuest = 1;
+        foreach (var p in Model.Questions)
+        {
+            if (Model.isTestWrong == true)
+            {
+
+                Answer answer = Model.Answers.Where(i => i.Quest_Id == p.Id).FirstOrDefault();
+                if (answer.IsCorrect == true)
+                {
+                    @:<div style="background-color: green;" class="question">
+                    <h4 style="color: #fff;" class="question__name">
+
+                        @{
+                         string nmbWithDot;
+                         nmbWithDot = numberQuest.ToString() + ".";
+                         }
+                        <span>@nmbWithDot</span>@p.Name
+                    </h4>                 
+                }
+                else
+                {
+                    @:<div style="background-color: #f00;" class="question">
+                    <h4 style="color: #fff;" class="question__name">
+                    @{
+                         string nmbWithDot;
+                         nmbWithDot = numberQuest.ToString() + ".";
+                     }
+                        <span>@nmbWithDot</span>@p.Name
+                    </h4>
+                }
+            }
+        
+            else
+            {                  
+                            @:<div class="question">
+                                <h4 class="question__name">
+                                     @{
+                                         string nmbWithDot;
+                                         nmbWithDot = numberQuest.ToString() + ".";
+                                     }
+                                    <span>@nmbWithDot</span>@p.Name
+                                </h4>
+            }
+                                      
+                
+                    numberQuest++;
+                                
+                    @foreach (var d in p.Answers)
+                    {
+                        <div class="question__wrap">
+                    @{
+                        Answer answerQuest = Model.Answers.Where(i => i.PossibleAnswerId == d.Id).FirstOrDefault();
+                        if(answerQuest == null)
+                        {
+                            if(Model.isTestWrong == true)
+                            {
+                                <input onclick="return false;" class="answer_input" type="radio" name="@p.Id + "question1"" value="@d.Name" id="@d.Id">
+                            }
+                            else
+                            {
+                                <input class="answer_input" type="radio" name="@p.Id + "question1"" value="@d.Name" id="@d.Id">
+                            }
+                                    <input name="posible_answer_id" type="hidden" value="@d.Id">
+                                    <label for="@d.Id">@d.Name</label>
+                                    <input type="hidden" class="js_quest_id" value="@p.Id">
+                            <input type="hidden" class="js_test_id" value="@Model.Test_id">
+                        }                       
+                        else
+                        {
+                            if (Model.isTestWrong == true)
+                            {
+                                <input class="answer_input" onclick="return false;" checked type="radio" name="@p.Id + "question1"" value="@d.Name" id="@d.Id">
+                            }
+                            else
+                            {
+                                <input class="answer_input" checked type="radio" name="@p.Id + "question1"" value="@d.Name" id="@d.Id">
+                            }                            
+                                    <input name="posible_answer_id" type="hidden" value="@d.Id">
+                                    <label for="@d.Id">@d.Name</label>
+                                    <input type="hidden" class="js_quest_id" value="@p.Id">
+                                    <input type="hidden" class="js_test_id" value="@Model.Test_id">
+                                }
+                            }
+                            
+                        </div>
+
+                    }
+                
+            @:</div>
+                   
+        }
+    }
+    @{
+        if (Model.isTestWrong == true)
+        {
+
+        <a href="/tests/TestReplay/@Model.Test_id" class="test_complete_btn">Перепройти</a>
+
+        }
+        else
+        {
+            <form asp-controller="Tests" asp-action="CompleteTest" method="post">
+        <input type="hidden" value="@Model.Test_id" name="test_id"/>
+        <button type="submit" class="test_complete_btn">Завершить</button>
+    </form>
+        }
+    }   
+       
+</div>
+@{
+    if(Model.isTestWrong == true)
+    {
+
+    }
+    else
+    {
+        <script>
+    let answers = document.querySelectorAll('.answer_input');
+    answers.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            let quest_id = e.target.parentElement.querySelector('.js_quest_id');
+            let test_id = e.target.parentElement.querySelector('.js_test_id');
+            let answ = {
+                Id: e.target.id,
+                Test_id: test_id.value,
+                Quest_id: quest_id.value
+            };
+            $.ajax({
+                url: "/Tests/AnswerQuest",
+                data: answ,
+                method: "POST",
+                success: function (data) {
+                    console.log('1');
+                },
+                error: function (err) {
+                    console.error('2')
+                }
+            })
+        });
+    });
+</script>
+    }
+}

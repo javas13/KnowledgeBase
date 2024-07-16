@@ -1,0 +1,23 @@
+﻿@using StudyTodocups.Models
+@model IEnumerable<Article>
+@{
+    Layout = "_AdminLayout";
+}
+@{
+    foreach (var p in Model)
+    {
+        <div class="admin_module_item">
+            <span>id:@p.Id</span>
+            <span>Название:@p.Name</span>
+            <a href="/Admin/ArticleUpdate/@p.Id" class="admin_crud_btns">Редактировать</a>
+            <a class="admin_crud_btns">Удалить</a>
+            @{
+                if(p.IsVideo == true)
+                {
+                    <a class="admin_crud_btns">Видео</a>
+                }
+              
+            }          
+        </div>
+    }
+}

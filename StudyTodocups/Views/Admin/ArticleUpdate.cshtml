@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+@using StudyTodocups.Models;
+@using StudyTodocups.ViewModels;
+@model ArticleChangeVM
+<h1>Изменить статью</h1>
+
+<script>
+    tinymce.init({
+        selector: '#mytextarea',
+        setup: function (editor) {
+            editor.on('init', function (e) {
+                editor.setContent('@Html.Raw(Model.Article.Text)');
+            });
+        },
+        advcode_inline: true,
+        images_upload_url: 'Admin/UploadImageTMC',
+        images_upload_base_path: '',
+        relative_urls: false,
+        remove_script_host: false,
+        plugins: [
+            'a11ychecker', 'advlist', 'advcode', 'advtable', 'autolink', 'checklist', 'export', 'codesample',
+            'lists', 'link', 'image', 'charmap', 'preview', 'anchor', 'searchreplace', 'visualblocks',
+            'powerpaste', 'fullscreen', 'formatpainter', 'insertdatetime', 'media', 'table', 'help', 'wordcount'
+        ],
+
+        toolbar: 'undo redo | formatpainter casechange blocks | bold italic backcolor | ' +
+            'alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist checklist outdent indent | removeformat | a11ycheck code table help'
+
+    });
+</script>
+
+<script>
+    function example_image_upload_handler(blobInfo, success, failure, progress) {
+        var xhr, formData;
+
+        xhr = new XMLHttpRequest();
+        xhr.withCredentials = false;
+        xhr.open('POST', 'Admin/UploadImageTMC');
+
+        xhr.upload.onprogress = function (e) {
+            progress(e.loaded / e.total * 100);
+        };
+
+        xhr.onload = function () {
+            var json;
+
+            if (xhr.status === 403) {
+                failure('HTTP Error: ' + xhr.status, { remove: true });
+                return;
+            }
+
+            if (xhr.status < 200 || xhr.status >= 300) {
+                failure('HTTP Error: ' + xhr.status);
+                return;
+            }
+
+            json = JSON.parse(xhr.responseText);
+
+            if (!json || typeof json.location != 'string') {
+                failure('Invalid JSON: ' + xhr.responseText);
+                return;
+            }
+
+            success(json.location);
+        };
+
+        xhr.onerror = function () {
+            failure('Image upload failed due to a XHR Transport error. Code: ' + xhr.status);
+        };
+
+        formData = new FormData();
+        formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+        xhr.send(formData);
+    };
+</script>
+
+<form method="post" asp-controller="Admin" id="article_form" asp-action="UpdateText">
+    <input type="hidden" name="art_id" value="@Model.Article.Id"/>
+    <input class="form-control" value="@Model.Article.Name" name="article_name" placeholder="Название статьи или видео" />
+    <input class="form-control" value="@Model.Article.Description" name="article_descr" placeholder="Описание статьи" />
+    <div class="flex-row">
+        <span>Модуль</span>
+        <select name="module_id">
+            @{
+                foreach (var p in Model.Modules)
+                {
+                    if(p.Id == Model.Article.ModuleId)
+                    {
+                        <option selected value="@p.Id">@p.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@p.Id">@p.Name</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div class="d-flex justify-content-start">
+        <div class="">Это видео?</div>
+        @{
+            if (Model.Article.IsVideo == false)
+            {
+                <input name="is_video" type="checkbox" />
+            }
+            else
+            {
+                <input checked name="is_video" type="checkbox" />
+            }
+        }    
+    </div>
+    <textarea id="mytextarea"></textarea>
+
+    <button type="submit">Save</button>
+</form>
+<script>
+    $('#article_form').on('submit', function () {
+        $('#article_form').append('<input type="text" value="" class="rawTmc_id" name="content" />');
+        let tmcraw = document.querySelector('.rawTmc_id');
+        tmcraw.value = tinymce.activeEditor.getContent({ format: 'raw' });
+        return true;
+    });
+</script>

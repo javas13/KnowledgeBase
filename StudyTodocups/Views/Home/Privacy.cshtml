@@ -1,0 +1,62 @@
+﻿@using StudyTodocups.Models;
+@using StudyTodocups.ViewModels;
+@model ModuleVM;
+@{
+    ViewData["Title"] = Model.ArticleModule.Name;
+    ViewData["NamePage"] = Model.ArticleModule.Name;
+}
+
+<div class="dashboard__content">
+    <div class="tmc_text">
+        @Html.Raw(Model.ArticleModule.Text)
+    </div>
+    <div class="preparing__row">
+        @{
+            if (Model.PreviousArticle == 0 && Model.NextArticle == 0)
+            {
+                if(Model.TestId != 0)
+                {
+                    <a href="/home/module/@Model.PreviousModuleId" class="preparing__btn">Предыдущий модуль</a>
+                    <a href="/Tests/Test/@Model.TestId" class="preparing__btn">Тест</a>
+                }
+                else if (Model.NextModuleId != 0 && Model.PreviousModuleId != 0)
+                {
+                    <a href="/home/module/@Model.PreviousModuleId" class="preparing__btn">Предыдущий модуль</a>
+                    <a href="/home/module/@Model.NextModuleId" class="preparing__btn">Следующий модуль</a>
+                }
+
+            }
+            else if (Model.PreviousArticle == 0)
+            {
+                <a style="visibility: hidden;" class="preparing__btn">Предыдущий материал</a>
+                <a href="/article/modul_id_@Model.ModuleId/art_id_@Model.NextArticle" class="preparing__btn">Следующий материал</a>
+            }
+            else if (Model.NextArticle == 0)
+            {
+                if (Model.TestId != 0)
+                {
+                    <a href="/home/module/@Model.PreviousModuleId" class="preparing__btn">Предыдущий модуль</a>
+                    <a href="/Tests/Test/@Model.TestId" class="preparing__btn">Тест</a>
+                }
+                else if(Model.NextModuleId != 0)
+                {
+                    <a href="/article/modul_id_@Model.ModuleId/art_id_@Model.PreviousArticle" class="preparing__btn">Предыдущий материал</a>
+                    <a href="/home/module/@Model.NextModuleId" class="preparing__btn">Следующий модуль</a>
+                }
+                else
+                {
+                    <a href="/article/modul_id_@Model.ModuleId/art_id_@Model.PreviousArticle" class="preparing__btn">Предыдущий материал</a>
+                    <a style="visibility: hidden;" class="preparing__btn">Следующий материал</a>
+                }
+            }
+            
+            else
+            {
+                <a href="/article/modul_id_@Model.ModuleId/art_id_@Model.PreviousArticle" class="preparing__btn">Предыдущий материал</a>
+                <a href="/article/modul_id_@Model.ModuleId/art_id_@Model.NextArticle" class="preparing__btn">Следующий материал</a>
+            }
+        }
+       @*  <button class="preparing__btn">Предыдущий материал</button>
+        <button class="preparing__btn">Следующий материал</button> *@
+    </div>
+</div>

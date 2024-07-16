@@ -1,0 +1,29 @@
+﻿@using StudyTodocups.ViewModels;
+@model SuccessTestVM;
+@{
+    ViewData["Title"] = "Тест пройден";
+    ViewData["NamePage"] = "Успешное прохождение теста";
+}
+
+@{
+    if (Model.IsLastTest == true)
+    {
+        <div class="dashboard__content">
+            <div class="learn__success">
+                <p>Тест пройден</p>
+                <h4>Поздравляем!<br />Вы прошли все модули!</h4>
+            </div>
+            <a href="/" class="preparing__btn">Главная</a>
+        </div>
+    }
+    else
+    {
+        <div class="dashboard__content">
+            <div class="learn__success">
+                <p>Тест пройден</p>
+                <h4>Поздравляем!<br />Тест пройден<br />Вам открылся следующий модуль</h4>
+            </div>
+            <a href="/home/module/@Model.NextModuleId" class="preparing__btn">Следующий модуль</a>
+        </div>
+    }
+}

@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+
+}
+@model User
+<!doctype html>
+<html lang="ru">
+<head>
+    <style>
+        .loaded {
+            opacity: 1
+        }</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild3562-3733-4637-b937-386665653131/Logo_7_4x_---3-.ico" type="image/x-icon" />
+    <link asp-append-version="true" rel="stylesheet" href="css/main.css">
+    <title>TODOCUPS - Вход в аккаунт</title>
+
+</head>
+
+<body>
+    <section class="login">
+        <div class="login__container">
+            <form class="login__form" asp-controller="Login" asp-action="IndexSave" method="Post">
+                <h3>Aвторизация</h3>
+                <label for="">Email</label>
+                <input value="@Model.Login" name="login" @* type="email" *@>
+                <div class="error_mes_log">@Html.ValidationMessageFor(m => m.Login)</div>
+                <label for="">Пароль</label>
+                <input name="password" type="password">
+                <div class="error_mes_log">@Html.ValidationMessageFor(m => m.Password)</div>
+                <button type="submit" class="login__redBtn">Авторизоваться</button>
+                <button style="display: none;" type="submit" class="login__whiteBtn">Восстановить пароль</button>
+
+            </form>
+        </div>
+    </section>
+
+    <script asp-append-version="true" src="js/app.min.js"></script>
+</body>
+</html>

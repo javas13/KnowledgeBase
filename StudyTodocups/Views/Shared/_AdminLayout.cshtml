@@ -1,0 +1,32 @@
+﻿
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/bootstrap.min.css">
+    <link asp-append-version="true" rel="stylesheet" href="~/css/admin.css">
+    <script src="~/lib/jquery/dist/jquery-3.7.1.min.js"></script>
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+</head>
+<body>
+    <div class="page_root">
+        <div class="admin_main_flex">
+            <div class="left_navigation_block">
+                <div class="navigation_elem">Меню</div>
+                <a asp-controller="Admin" asp-action="ModuleAdd" class="navigation_elem">Добавить модуль</a>
+                <a asp-controller="Admin" asp-action="ModuleList" class="navigation_elem">Список модулей</a>
+                <a class="navigation_elem">баннер с видео ></a>
+            </div>
+            <div class="right_admin_block">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+    <script src="~/lib/bootstrap/bootstrap.min.js"></script>   
+    <script asp-append-version="true" src="~/js/main.js"></script>
+</body>
+</html>

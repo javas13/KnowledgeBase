@@ -1,0 +1,17 @@
+﻿@using StudyTodocups.Models
+@model IEnumerable<Module>
+@{
+    Layout = "_AdminLayout";
+}
+@{
+    foreach(var p in Model)
+    {
+        <div class="admin_module_item">
+        <span>id:@p.Id</span>
+         <span>Название:@p.Name</span>
+         <a class="admin_crud_btns">Редактировать</a>
+         <a href="/Admin/ArticleList/@p.Id" class="admin_crud_btns">Статьи</a>
+         <a class="admin_crud_btns">Удалить</a>
+        </div>
+    }
+}
